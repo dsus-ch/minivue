@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../core/renderer.js"></script>
+</head>
+<body>
+  <div id='root'></div>
+  <script>
+    const vnode = { //虚拟DOM
+      tag: 'div',
+      props:{
+        onClick: () => alert('hello')
+      },
+      children: 'chick me'
+    }
+    renderer(vnode, document.getElementById('root'))
+
+    //组件的本质就是返回虚拟DOM
+    MyComponent = function(){//创建一个自定义组件
+      return {
+        tag: 'div',
+        props:{
+          onClick: () => alert('hello world')
+        },
+        children: 'chick me too'
+      }
+    }
+    const vnode2 = {
+      tag: MyComponent
+    }
+    renderer(vnode2, document.getElementById('root'))
+  </script>
+</body>
+</html>
